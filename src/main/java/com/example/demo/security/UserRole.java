@@ -1,7 +1,9 @@
 package com.example.demo.security;
 
 import com.example.demo.domain.User;
-import jakarta.persistence.*;
+
+import javax.persistence.*;
+
 
 @Entity
 @Table(name = "user_role")

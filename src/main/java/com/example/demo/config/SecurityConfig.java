@@ -2,18 +2,20 @@ package com.example.demo.config;
 
 
 import com.example.demo.service.UserSecurityService;
-import com.example.demo.utilities.SecurityUtility;
-import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import java.security.SecureRandom;
 
 @Configuration
 @EnableWebSecurity
@@ -21,13 +23,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private Environment environment;
-    @Autowired
     private UserSecurityService userSecurityService;
 
     @Bean
-    private BCryptPasswordEncoder passwordEncoder(){
-        return SecurityUtility.passwordEncoder();
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder(12,new SecureRandom());
     }
 
     private static final String[] PUBLIC_MATCHERS = {
@@ -53,6 +53,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .rememberMe();
     }
+
+
 
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userSecurityService).passwordEncoder(passwordEncoder());

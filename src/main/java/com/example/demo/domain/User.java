@@ -2,6 +2,7 @@ package com.example.demo.domain;
 
 import com.example.demo.security.Authority;
 import com.example.demo.security.UserRole;
+
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

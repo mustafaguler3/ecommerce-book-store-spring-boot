@@ -2,6 +2,7 @@ package com.example.demo.config;
 
 
 import com.example.demo.service.UserSecurityService;
+import com.example.demo.utilities.SecurityUtility;
 import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

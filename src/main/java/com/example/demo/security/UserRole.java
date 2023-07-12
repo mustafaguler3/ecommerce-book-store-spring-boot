@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class UserRole {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userRoleId;
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;

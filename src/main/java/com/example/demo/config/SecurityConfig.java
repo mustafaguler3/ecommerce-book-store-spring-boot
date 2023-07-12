@@ -2,6 +2,7 @@ package com.example.demo.config;
 
 
 import com.example.demo.service.UserSecurityService;
+import com.example.demo.utilities.SecurityUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,11 +25,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserSecurityService userSecurityService;
-
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder(12,new SecureRandom());
-    }
 
     private static final String[] PUBLIC_MATCHERS = {
             "/css/**",
@@ -57,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userSecurityService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userSecurityService).passwordEncoder(SecurityUtility.passwordEncoder());
     }
 }
 

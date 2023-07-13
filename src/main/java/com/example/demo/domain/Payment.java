@@ -15,6 +15,10 @@ public class Payment {
     private int cvc;
     private String holderName;
     private boolean defaultPayment;
+
+    @OneToOne
+    private Order order;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

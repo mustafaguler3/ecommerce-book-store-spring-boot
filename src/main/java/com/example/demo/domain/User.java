@@ -29,7 +29,8 @@ public class User implements UserDetails {
     private Set<UserRole> userRoles = new HashSet<>();
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
     private List<UserShipping> userShippingList;
-
+    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+    private ShoppingCart shoppingCart;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
     private List<Payment> userPaymentList;
 
@@ -38,6 +39,14 @@ public class User implements UserDetails {
         Set<GrantedAuthority> authorities = new HashSet<>();
         userRoles.forEach(i->authorities.add(new Authority(i.getRole().getName())));
         return authorities;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 
     @Override

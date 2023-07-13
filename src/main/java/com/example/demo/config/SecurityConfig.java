@@ -31,7 +31,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/js/**",
             "/image/**",
             "/",
-            "/myAccount"
+            "/login",
+            "/newUser",
+            "/forgetPassword",
+            "/bookDetail",
+            "/fonts/**",
+            "/bookshelf"
     };
 
     @Override

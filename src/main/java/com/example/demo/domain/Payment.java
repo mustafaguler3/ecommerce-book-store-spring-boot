@@ -33,6 +33,14 @@ public class Payment {
         this.user = user;
     }
 
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
     public UserBilling getUserBilling() {
         return userBilling;
     }

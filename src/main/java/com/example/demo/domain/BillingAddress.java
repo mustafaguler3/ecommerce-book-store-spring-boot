@@ -11,6 +11,16 @@ public class BillingAddress {
     private String billingAddressName;
     private String billingAddressStreet1;
     private String billingAddressStreet2;
+    private String billingAddressState;
+
+    public String getBillingAddressState() {
+        return billingAddressState;
+    }
+
+    public void setBillingAddressState(String billingAddressState) {
+        this.billingAddressState = billingAddressState;
+    }
+
     private String billingAddressCity;
     private String billingAddressCountry;
     private String billingAddressZipCode;

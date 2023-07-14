@@ -20,6 +20,10 @@ public class Order {
     private List<CartItem> cartItems;
     @OneToOne(cascade = CascadeType.ALL)
     private ShippingAddress shippingAddress;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private BillingAddress billingAddress;
+
     @OneToOne(cascade = CascadeType.ALL)
     private Payment payment;
     @ManyToOne
@@ -31,6 +35,14 @@ public class Order {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public BillingAddress getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(BillingAddress billingAddress) {
+        this.billingAddress = billingAddress;
     }
 
     public Date getOrderDate() {

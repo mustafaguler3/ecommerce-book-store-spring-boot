@@ -21,6 +21,18 @@ public class PaymentServiceImpl implements PaymentService {
     public void removeById(Long creditCardId) {
         paymentRepository.deleteById(creditCardId);
     }
+
+    @Override
+    public Payment setByUserPayment(Payment userPayment, Payment payment) {
+        payment.setType(userPayment.getType());
+        payment.setHolderName(userPayment.getHolderName());
+        payment.setCardNumber(userPayment.getCardNumber());
+        payment.setCardName(userPayment.getCardName());
+        payment.setExpiryMonth(userPayment.getExpiryMonth());
+        payment.setExpiryYear(userPayment.getExpiryYear());
+        payment.setCvc(userPayment.getCvc());
+        return payment;
+    }
 }
 
 

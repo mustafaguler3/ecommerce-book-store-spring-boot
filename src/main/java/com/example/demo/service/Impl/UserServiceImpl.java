@@ -1,9 +1,6 @@
 package com.example.demo.service.Impl;
 
-import com.example.demo.domain.Payment;
-import com.example.demo.domain.User;
-import com.example.demo.domain.UserBilling;
-import com.example.demo.domain.UserShipping;
+import com.example.demo.domain.*;
 import com.example.demo.repository.*;
 import com.example.demo.security.PasswordResetToken;
 import com.example.demo.security.UserRole;
@@ -11,6 +8,7 @@ import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -60,6 +58,15 @@ public class UserServiceImpl implements UserService {
                 roleRepository.save(role.getRole());
             }
             user.getUserRoles().addAll(userRoles);
+
+            ShoppingCart shoppingCart = new ShoppingCart();
+            shoppingCart.setUser(user);
+            user.setShoppingCart(shoppingCart);
+
+            user.setUserShippingList(new ArrayList<UserShipping>());
+            user.setUserPaymentList(new ArrayList<Payment>());
+
+
             localUser = userRepository.save(user);
         }
         return localUser;

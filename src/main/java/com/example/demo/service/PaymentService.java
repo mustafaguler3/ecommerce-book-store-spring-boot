@@ -6,4 +6,6 @@ public interface PaymentService {
     Payment findById(Long id);
 
     void removeById(Long creditCardId);
+    //userPayment - Payment
+    Payment setByUserPayment(Payment userPayment, Payment payment);
 }
